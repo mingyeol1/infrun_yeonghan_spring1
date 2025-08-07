@@ -1,7 +1,6 @@
 package infrun.core;
 
 import infrun.core.discount.DiscountPolicy;
-import infrun.core.discount.FixDiscountPolicy;
 import infrun.core.discount.RateDiscountPolicy;
 import infrun.core.member.MemberRepository;
 import infrun.core.member.MemberService;
@@ -16,18 +15,24 @@ import org.springframework.context.annotation.Configuration;
 @Configuration  //설정정보를 구성하는 configuration
 public class AppConfig {
 
+
+
     @Bean
     public MemberService memberService(){
+        System.out.println("CALL AppConfig.memberService");
+
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public MemberRepository memberRepository(){
+        System.out.println("CALL AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService(){
+        System.out.println("CALL AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
